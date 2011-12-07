@@ -48,7 +48,8 @@ or &quot;path&quot;. <strong>name</strong> is the name of the variable causing p
 <strong>description</strong> contains a more detailled message.</p>
 <p>Let's run this simple service, with <cite>bin/paster serve</cite> and send some queries to
 it:</p>
-<div class="highlight"><pre>$ curl -v http://127.0.0.1:5000/service
+<pre class="literal-block">
+$ curl -v http://127.0.0.1:5000/service
 &gt; GET /service HTTP/1.1
 &gt; Host: 127.0.0.1:5000
 &gt; Accept: */*
@@ -57,7 +58,7 @@ it:</p>
 &lt; HTTP/1.0 400 Bad Request
 &lt; Content-Type: application/json; charset=UTF-8
 [{&quot;location&quot;: &quot;body&quot;, &quot;name&quot;: &quot;awesome&quot;, &quot;description&quot;: &quot;You lack awesomeness!&quot;}
-</pre></div>
+</pre>
 <p>I've removed the extra clutter from the curl's output, but you got the general idea.</p>
 <p>The content returned is in JSON, and I know exactly what I have to do: add an
 &quot;awesome&quot; parameter in my query. Let's do it again:</p>
@@ -100,19 +101,10 @@ content-types they can deal with, and this will be checked against the
 <strong>Accept</strong> headers sent by the client.</p>
 <p>Let's refine a bit our previous example, by specifying which content-types are
 supported, using the <cite>accept</cite> parameter:</p>
-<div class="system-message">
-<p class="system-message-title">System Message: ERROR/3 (<tt class="docutils">./content/mozilla/introducing-cornice.rst</tt>, line 117)</p>
-<p>Error in &quot;code-block&quot; directive:
-1 argument(s) required, 0 supplied.</p>
-<pre class="literal-block">
-.. code-block::
-
-    &#64;service.get(validator=is_awesome, accept=(&quot;application/json&quot;, &quot;text/json&quot;))
-    def get1(request):
-        return {&quot;test&quot;: &quot;yay!&quot;}
-
-</pre>
-</div>
+<div class="highlight"><pre><span class="nd">@service.get</span><span class="p">(</span><span class="n">validator</span><span class="o">=</span><span class="n">is_awesome</span><span class="p">,</span> <span class="n">accept</span><span class="o">=</span><span class="p">(</span><span class="s">&quot;application/json&quot;</span><span class="p">,</span> <span class="s">&quot;text/json&quot;</span><span class="p">))</span>
+<span class="k">def</span> <span class="nf">get1</span><span class="p">(</span><span class="n">request</span><span class="p">):</span>
+    <span class="k">return</span> <span class="p">{</span><span class="s">&quot;test&quot;</span><span class="p">:</span> <span class="s">&quot;yay!&quot;</span><span class="p">}</span>
+</pre></div>
 <p>Now, if you specifically ask for XML, for instance, cornice will throw a 406
 with the list of accepted content-types:</p>
 <pre class="literal-block">

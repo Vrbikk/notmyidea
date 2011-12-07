@@ -33,7 +33,8 @@ or &amp;quot;path&amp;quot;. &lt;strong&gt;name&lt;/strong&gt; is the name of th
 &lt;strong&gt;description&lt;/strong&gt; contains a more detailled message.&lt;/p&gt;
 &lt;p&gt;Let's run this simple service, with &lt;cite&gt;bin/paster serve&lt;/cite&gt; and send some queries to
 it:&lt;/p&gt;
-&lt;div class="highlight"&gt;&lt;pre&gt;$ curl -v http://127.0.0.1:5000/service
+&lt;pre class="literal-block"&gt;
+$ curl -v http://127.0.0.1:5000/service
 &amp;gt; GET /service HTTP/1.1
 &amp;gt; Host: 127.0.0.1:5000
 &amp;gt; Accept: */*
@@ -42,7 +43,7 @@ it:&lt;/p&gt;
 &amp;lt; HTTP/1.0 400 Bad Request
 &amp;lt; Content-Type: application/json; charset=UTF-8
 [{&amp;quot;location&amp;quot;: &amp;quot;body&amp;quot;, &amp;quot;name&amp;quot;: &amp;quot;awesome&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;You lack awesomeness!&amp;quot;}
-&lt;/pre&gt;&lt;/div&gt;
+&lt;/pre&gt;
 &lt;p&gt;I've removed the extra clutter from the curl's output, but you got the general idea.&lt;/p&gt;
 &lt;p&gt;The content returned is in JSON, and I know exactly what I have to do: add an
 &amp;quot;awesome&amp;quot; parameter in my query. Let's do it again:&lt;/p&gt;
@@ -85,19 +86,10 @@ content-types they can deal with, and this will be checked against the
 &lt;strong&gt;Accept&lt;/strong&gt; headers sent by the client.&lt;/p&gt;
 &lt;p&gt;Let's refine a bit our previous example, by specifying which content-types are
 supported, using the &lt;cite&gt;accept&lt;/cite&gt; parameter:&lt;/p&gt;
-&lt;div class="system-message"&gt;
-&lt;p class="system-message-title"&gt;System Message: ERROR/3 (&lt;tt class="docutils"&gt;./content/mozilla/introducing-cornice.rst&lt;/tt&gt;, line 117)&lt;/p&gt;
-&lt;p&gt;Error in &amp;quot;code-block&amp;quot; directive:
-1 argument(s) required, 0 supplied.&lt;/p&gt;
-&lt;pre class="literal-block"&gt;
-.. code-block::
-
-    &amp;#64;service.get(validator=is_awesome, accept=(&amp;quot;application/json&amp;quot;, &amp;quot;text/json&amp;quot;))
-    def get1(request):
-        return {&amp;quot;test&amp;quot;: &amp;quot;yay!&amp;quot;}
-
-&lt;/pre&gt;
-&lt;/div&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="nd"&gt;@service.get&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;validator&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="n"&gt;is_awesome&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;accept&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;application/json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;text/json&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;))&lt;/span&gt;
+&lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
+    &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;yay!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;Now, if you specifically ask for XML, for instance, cornice will throw a 406
 with the list of accepted content-types:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
