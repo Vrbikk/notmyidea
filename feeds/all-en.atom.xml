@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Alexis' log</title><link href="http://blog.notmyidea.org" rel="alternate"></link><link href="http://blog.notmyidea.org/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.notmyidea.org</id><updated>2011-12-06T00:00:00+01:00</updated><entry><title>Introducing Cornice</title><link href="http://blog.notmyidea.org/introducing-cornice.html" rel="alternate"></link><updated>2011-12-06T00:00:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-12-06:/introducing-cornice.html/</id><summary type="html">&lt;p&gt;Wow, already my third working day at mozilla. Since Monday, I've been working with
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Alexis' log</title><link href="http://blog.notmyidea.org" rel="alternate"></link><link href="http://blog.notmyidea.org/feeds/all-en.atom.xml" rel="self"></link><id>http://blog.notmyidea.org</id><updated>2011-12-07T00:00:00+01:00</updated><entry><title>Introducing Cornice</title><link href="http://blog.notmyidea.org/introducing-cornice.html" rel="alternate"></link><updated>2011-12-07T00:00:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-12-07:/introducing-cornice.html/</id><summary type="html">&lt;p&gt;Wow, already my third working day at Mozilla. Since Monday, I've been working with
 Tarek Ziadé, on a pyramid REST-ish toolkit named &lt;a class="reference external" href="https://github.com/mozilla-services/Cornice"&gt;Cornice&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Its goal is to take care for you of what you're usually missing so you can
 focus on what's important. Cornice provides you facilities
@@ -30,7 +30,7 @@ multiple formats in the future)&lt;/p&gt;
 &lt;strong&gt;name&lt;/strong&gt; and &lt;strong&gt;description&lt;/strong&gt;.&lt;/p&gt;
 &lt;p&gt;&lt;strong&gt;location&lt;/strong&gt; is where the error is located in the request. It can either be &amp;quot;body&amp;quot;,
 &amp;quot;query&amp;quot;, &amp;quot;headers&amp;quot; or &amp;quot;path&amp;quot;. &lt;strong&gt;name&lt;/strong&gt; is the name of the variable causing
-problem, if any, and &lt;strong&gt;description&lt;/strong&gt; contains a more detailled message.&lt;/p&gt;
+problem, if any, and &lt;strong&gt;description&lt;/strong&gt; contains a more detailed message.&lt;/p&gt;
 &lt;p&gt;Let's run this simple service and send some queries to it:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ curl -v http://127.0.0.1:5000/service
@@ -107,13 +107,36 @@ $ curl -vH &amp;quot;Accept: application/xml&amp;quot; http://127.0.0.1:5000/ser
 &lt;/div&gt;
 &lt;div class="section" id="building-your-documentation-automatically"&gt;
 &lt;h2&gt;Building your documentation automatically&lt;/h2&gt;
-&lt;p&gt;XXX&lt;/p&gt;
+&lt;p&gt;writing documentation for web services can be painful, especially when your
+services evolve. Cornice provides a sphinx directive to automatically document
+your API in your docs.&lt;/p&gt;
+&lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="p"&gt;..&lt;/span&gt; &lt;span class="ow"&gt;services&lt;/span&gt;&lt;span class="p"&gt;::&lt;/span&gt;
+   &lt;span class="nc"&gt;:package:&lt;/span&gt; &lt;span class="nf"&gt;coolapp&lt;/span&gt;
+   &lt;span class="nc"&gt;:service:&lt;/span&gt; &lt;span class="nf"&gt;quote&lt;/span&gt;
+&lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;Here is an example of what a generated page looks like: &lt;a class="reference external" href="http://packages.python.org/cornice/exampledoc.html"&gt;http://packages.python.org/cornice/exampledoc.html&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="yay-how-can-i-get-it"&gt;
-&lt;h2&gt;Yay, how can I get it?&lt;/h2&gt;
+&lt;h2&gt;Yay! How can I get it?&lt;/h2&gt;
+&lt;p&gt;We just cut a 0.4 release, so it's available at &lt;a class="reference external" href="http://pypi.python.org/pypi/Cornice"&gt;http://pypi.python.org/pypi/Cornice&lt;/a&gt;
+You can install it easily using &lt;cite&gt;pip&lt;/cite&gt;, for instance:&lt;/p&gt;
+&lt;pre class="literal-block"&gt;
+$ pip install cornice
+&lt;/pre&gt;
+&lt;p&gt;You can also have a look at the documentation at
+&lt;a class="reference external" href="http://packages.python.org/cornice/"&gt;http://packages.python.org/cornice/&lt;/a&gt;&lt;/p&gt;
 &lt;/div&gt;
 &lt;div class="section" id="what-s-next"&gt;
-&lt;h2&gt;What's next&lt;/h2&gt;
+&lt;h2&gt;What's next?&lt;/h2&gt;
+&lt;p&gt;We try to make our best to find how Cornice can help you build better
+web services. Cool features we want for the future include:&lt;/p&gt;
+&lt;ul class="simple"&gt;
+&lt;li&gt;Automatically publish a static definition of the services, so it can be
+used by clients to discover services in a nice way.&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;Of course, we are open to all your ideas and patches! If you feel haskish and
+want to see the sources, &lt;a class="reference external" href="https://github.com/mozilla-services/cornice"&gt;go grab them on github&lt;/a&gt;
+, commit and send us a pull request!&lt;/p&gt;
 &lt;/div&gt;
 </summary></entry><entry><title>How are you handling your shared expenses?</title><link href="http://blog.notmyidea.org/how-are-you-handling-your-shared-expenses.html" rel="alternate"></link><updated>2011-10-15T00:00:00+02:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-10-15:/how-are-you-handling-your-shared-expenses.html/</id><summary type="html">&lt;p&gt;&lt;strong&gt;TL;DR:&lt;/strong&gt; We're kick-starting a new application to manage your shared
 expenses. Have a look at &lt;a class="reference external" href="http://ihatemoney.notmyidea.org"&gt;http://ihatemoney.notmyidea.org&lt;/a&gt;&lt;/p&gt;

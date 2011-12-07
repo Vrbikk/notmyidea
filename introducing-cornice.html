@@ -13,8 +13,8 @@
     </div>
     <div class="content clear">
     <h1>Introducing Cornice</h1>
-    <p class="date">Published on Tue 06 December 2011</p>
-    <p>Wow, already my third working day at mozilla. Since Monday, I've been working with
+    <p class="date">Published on Wed 07 December 2011</p>
+    <p>Wow, already my third working day at Mozilla. Since Monday, I've been working with
 Tarek Ziadé, on a pyramid REST-ish toolkit named <a class="reference external" href="https://github.com/mozilla-services/Cornice">Cornice</a>.</p>
 <p>Its goal is to take care for you of what you're usually missing so you can
 focus on what's important. Cornice provides you facilities
@@ -45,7 +45,7 @@ multiple formats in the future)</p>
 <strong>name</strong> and <strong>description</strong>.</p>
 <p><strong>location</strong> is where the error is located in the request. It can either be &quot;body&quot;,
 &quot;query&quot;, &quot;headers&quot; or &quot;path&quot;. <strong>name</strong> is the name of the variable causing
-problem, if any, and <strong>description</strong> contains a more detailled message.</p>
+problem, if any, and <strong>description</strong> contains a more detailed message.</p>
 <p>Let's run this simple service and send some queries to it:</p>
 <pre class="literal-block">
 $ curl -v http://127.0.0.1:5000/service
@@ -122,13 +122,36 @@ $ curl -vH &quot;Accept: application/xml&quot; http://127.0.0.1:5000/service
 </div>
 <div class="section" id="building-your-documentation-automatically">
 <h2>Building your documentation automatically</h2>
-<p>XXX</p>
+<p>writing documentation for web services can be painful, especially when your
+services evolve. Cornice provides a sphinx directive to automatically document
+your API in your docs.</p>
+<div class="highlight"><pre><span class="p">..</span> <span class="ow">services</span><span class="p">::</span>
+   <span class="nc">:package:</span> <span class="nf">coolapp</span>
+   <span class="nc">:service:</span> <span class="nf">quote</span>
+</pre></div>
+<p>Here is an example of what a generated page looks like: <a class="reference external" href="http://packages.python.org/cornice/exampledoc.html">http://packages.python.org/cornice/exampledoc.html</a></p>
 </div>
 <div class="section" id="yay-how-can-i-get-it">
-<h2>Yay, how can I get it?</h2>
+<h2>Yay! How can I get it?</h2>
+<p>We just cut a 0.4 release, so it's available at <a class="reference external" href="http://pypi.python.org/pypi/Cornice">http://pypi.python.org/pypi/Cornice</a>
+You can install it easily using <cite>pip</cite>, for instance:</p>
+<pre class="literal-block">
+$ pip install cornice
+</pre>
+<p>You can also have a look at the documentation at
+<a class="reference external" href="http://packages.python.org/cornice/">http://packages.python.org/cornice/</a></p>
 </div>
 <div class="section" id="what-s-next">
-<h2>What's next</h2>
+<h2>What's next?</h2>
+<p>We try to make our best to find how Cornice can help you build better
+web services. Cool features we want for the future include:</p>
+<ul class="simple">
+<li>Automatically publish a static definition of the services, so it can be
+used by clients to discover services in a nice way.</li>
+</ul>
+<p>Of course, we are open to all your ideas and patches! If you feel haskish and
+want to see the sources, <a class="reference external" href="https://github.com/mozilla-services/cornice">go grab them on github</a>
+, commit and send us a pull request!</p>
 </div>
 
 
