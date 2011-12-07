@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
 <feed xmlns="http://www.w3.org/2005/Atom"><title>Alexis' log</title><link href="http://blog.notmyidea.org" rel="alternate"></link><link href="http://blog.notmyidea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.notmyidea.org</id><updated>2011-12-07T00:00:00+01:00</updated><entry><title>Introducing Cornice</title><link href="http://blog.notmyidea.org/introducing-cornice.html" rel="alternate"></link><updated>2011-12-07T00:00:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-12-07:/introducing-cornice.html/</id><summary type="html">&lt;p&gt;Wow, already my third working day at Mozilla. Since Monday, I've been working with
-Tarek Ziadé, on a pyramid REST-ish toolkit named &lt;a class="reference external" href="https://github.com/mozilla-services/Cornice"&gt;Cornice&lt;/a&gt;.&lt;/p&gt;
+&lt;a class="reference external" href="http://ziade.org"&gt;Tarek Ziadé&lt;/a&gt;, on a pyramid REST-ish toolkit named &lt;a class="reference external" href="https://github.com/mozilla-services/Cornice"&gt;Cornice&lt;/a&gt;.&lt;/p&gt;
 &lt;p&gt;Its goal is to take care for you of what you're usually missing so you can
 focus on what's important. Cornice provides you facilities
 for validation of any kind.&lt;/p&gt;
 &lt;p&gt;The goal is to simplify your work, but we don't want to reinvent the wheel, so
-it is easily pluggable with validations frameworks, such as Colander.&lt;/p&gt;
+it is easily pluggable with validations frameworks, such as &lt;a class="reference external" href="http://docs.pylonsproject.org/projects/colander/en/latest/"&gt;Colander&lt;/a&gt;.&lt;/p&gt;
 &lt;div class="section" id="handling-errors-and-validation"&gt;
 &lt;h2&gt;Handling errors and validation&lt;/h2&gt;
-&lt;p&gt;We have changed the way errors are handled. Here is how it works:&lt;/p&gt;
+&lt;p&gt;Here is how it works:&lt;/p&gt;
 &lt;div class="highlight"&gt;&lt;pre&gt;&lt;span class="n"&gt;service&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="n"&gt;Service&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;name&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;service&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="n"&gt;path&lt;/span&gt;&lt;span class="o"&gt;=&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;/service&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 
@@ -129,11 +129,9 @@ $ pip install cornice
 &lt;div class="section" id="what-s-next"&gt;
 &lt;h2&gt;What's next?&lt;/h2&gt;
 &lt;p&gt;We try to make our best to find how Cornice can help you build better
-web services. Cool features we want for the future include:&lt;/p&gt;
-&lt;ul class="simple"&gt;
-&lt;li&gt;Automatically publish a static definition of the services, so it can be
-used by clients to discover services in a nice way.&lt;/li&gt;
-&lt;/ul&gt;
+web services. Cool features we want for the future include the automatic
+publication of a static definition of the services, so it can be used by clients
+to discover services in a nice way.&lt;/p&gt;
 &lt;p&gt;Of course, we are open to all your ideas and patches! If you feel haskish and
 want to see the sources, &lt;a class="reference external" href="https://github.com/mozilla-services/cornice"&gt;go grab them on github&lt;/a&gt;
 , commit and send us a pull request!&lt;/p&gt;
