@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<feed xmlns="http://www.w3.org/2005/Atom"><title>Alexis' log</title><link href="http://blog.notmyidea.org" rel="alternate"></link><link href="http://blog.notmyidea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.notmyidea.org</id><updated>2011-12-06T00:00:00+01:00</updated><entry><title>Introducing cornice</title><link href="http://blog.notmyidea.org/introducing-cornice.html" rel="alternate"></link><updated>2011-12-06T00:00:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-12-06:/introducing-cornice.html/</id><summary type="html">&lt;p&gt;Wow, already my third working day at mozilla. Since Monday, I've been working with
-Tarek Ziadé, on a pyramid REST-ish toolkit named &lt;a class="reference external" href="https://github.com/mozilla-services/cornice"&gt;cornice&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Its goal is to take all the hard bits appart from you when implementing a web
-service, so you can focus on what's important. Cornice provides you facilities
+<feed xmlns="http://www.w3.org/2005/Atom"><title>Alexis' log</title><link href="http://blog.notmyidea.org" rel="alternate"></link><link href="http://blog.notmyidea.org/feeds/all.atom.xml" rel="self"></link><id>http://blog.notmyidea.org</id><updated>2011-12-06T00:00:00+01:00</updated><entry><title>Introducing Cornice</title><link href="http://blog.notmyidea.org/introducing-cornice.html" rel="alternate"></link><updated>2011-12-06T00:00:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-12-06:/introducing-cornice.html/</id><summary type="html">&lt;p&gt;Wow, already my third working day at mozilla. Since Monday, I've been working with
+Tarek Ziadé, on a pyramid REST-ish toolkit named &lt;a class="reference external" href="https://github.com/mozilla-services/Cornice"&gt;Cornice&lt;/a&gt;.&lt;/p&gt;
+&lt;p&gt;Its goal is to take care for you of what you're usually missing so you can
+focus on what's important. Cornice provides you facilities
 for validation of any kind.&lt;/p&gt;
 &lt;p&gt;The goal is to simplify your work, but we don't want to reinvent the wheel, so
-it is easily pluggable with validations frameworks, such as Collander.&lt;/p&gt;
+it is easily pluggable with validations frameworks, such as Colander.&lt;/p&gt;
 &lt;div class="section" id="handling-errors-and-validation"&gt;
 &lt;h2&gt;Handling errors and validation&lt;/h2&gt;
 &lt;p&gt;We have changed the way errors are handled. Here is how it works:&lt;/p&gt;
@@ -14,7 +14,7 @@ it is easily pluggable with validations frameworks, such as Collander.&lt;/p&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_awesome&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;query&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                             &lt;span class="s"&gt;&amp;#39;the awesome parameter is required&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
 
 
@@ -24,15 +24,14 @@ it is easily pluggable with validations frameworks, such as Collander.&lt;/p&gt;
 &lt;/pre&gt;&lt;/div&gt;
 &lt;p&gt;All the errors collected during the validation process, or after, are collected
 before returning the request. If any, a error 400 is fired up, with the list of
-problems encoutred encoded as a nice json list (we plan to support multiple
-formats in the future)&lt;/p&gt;
+problems encountered returned as a nice json list response (we plan to support
+multiple formats in the future)&lt;/p&gt;
 &lt;p&gt;As you might have seen, &lt;cite&gt;request.errors.add&lt;/cite&gt; takes three parameters: &lt;strong&gt;location&lt;/strong&gt;,
 &lt;strong&gt;name&lt;/strong&gt; and &lt;strong&gt;description&lt;/strong&gt;.&lt;/p&gt;
-&lt;p&gt;&lt;strong&gt;location&lt;/strong&gt; is where the error arised. It can either be &amp;quot;body&amp;quot;, &amp;quot;query&amp;quot;, &amp;quot;headers&amp;quot;
-or &amp;quot;path&amp;quot;. &lt;strong&gt;name&lt;/strong&gt; is the name of the variable causing problem, if any, and
-&lt;strong&gt;description&lt;/strong&gt; contains a more detailled message.&lt;/p&gt;
-&lt;p&gt;Let's run this simple service, with &lt;cite&gt;bin/paster serve&lt;/cite&gt; and send some queries to
-it:&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;location&lt;/strong&gt; is where the error is located in the request. It can either be &amp;quot;body&amp;quot;,
+&amp;quot;query&amp;quot;, &amp;quot;headers&amp;quot; or &amp;quot;path&amp;quot;. &lt;strong&gt;name&lt;/strong&gt; is the name of the variable causing
+problem, if any, and &lt;strong&gt;description&lt;/strong&gt; contains a more detailled message.&lt;/p&gt;
+&lt;p&gt;Let's run this simple service and send some queries to it:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ curl -v http://127.0.0.1:5000/service
 &amp;gt; GET /service HTTP/1.1
@@ -42,7 +41,7 @@ $ curl -v http://127.0.0.1:5000/service
 * HTTP 1.0, assume close after body
 &amp;lt; HTTP/1.0 400 Bad Request
 &amp;lt; Content-Type: application/json; charset=UTF-8
-[{&amp;quot;location&amp;quot;: &amp;quot;body&amp;quot;, &amp;quot;name&amp;quot;: &amp;quot;awesome&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;You lack awesomeness!&amp;quot;}
+[{&amp;quot;location&amp;quot;: &amp;quot;query&amp;quot;, &amp;quot;name&amp;quot;: &amp;quot;awesome&amp;quot;, &amp;quot;description&amp;quot;: &amp;quot;You lack awesomeness!&amp;quot;}
 &lt;/pre&gt;
 &lt;p&gt;I've removed the extra clutter from the curl's output, but you got the general idea.&lt;/p&gt;
 &lt;p&gt;The content returned is in JSON, and I know exactly what I have to do: add an
@@ -51,8 +50,8 @@ $ curl -v http://127.0.0.1:5000/service
 $ curl http://127.0.0.1:5000/service?awesome=yeah
 {&amp;quot;test&amp;quot;: &amp;quot;yay!&amp;quot;}
 &lt;/pre&gt;
-&lt;p&gt;Validators can also attach extra information about validations to the request,
-using &lt;cite&gt;request.validated&lt;/cite&gt;. It is a standard dict automatically attached to the
+&lt;p&gt;Validators can also convert parts of the request and store the converted value
+in &lt;cite&gt;request.validated&lt;/cite&gt;. It is a standard dict automatically attached to the
 requests.&lt;/p&gt;
 &lt;p&gt;For instance, in our validator, we can chose to validate the parameter passed
 and use it in the body of the webservice:&lt;/p&gt;
@@ -61,7 +60,7 @@ and use it in the body of the webservice:&lt;/p&gt;
 
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;is_awesome&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;if&lt;/span&gt; &lt;span class="ow"&gt;not&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt; &lt;span class="ow"&gt;in&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
-        &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;body&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
+        &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;errors&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;add&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;query&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;,&lt;/span&gt;
                             &lt;span class="s"&gt;&amp;#39;the awesome parameter is required&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;)&lt;/span&gt;
     &lt;span class="k"&gt;else&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt;
         &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt; &lt;span class="o"&gt;=&lt;/span&gt; &lt;span class="s"&gt;&amp;#39;awesome &amp;#39;&lt;/span&gt; &lt;span class="o"&gt;+&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;GET&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]&lt;/span&gt;
@@ -71,6 +70,7 @@ and use it in the body of the webservice:&lt;/p&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="o"&gt;.&lt;/span&gt;&lt;span class="n"&gt;validated&lt;/span&gt;&lt;span class="p"&gt;[&lt;/span&gt;&lt;span class="s"&gt;&amp;#39;awesome&amp;#39;&lt;/span&gt;&lt;span class="p"&gt;]}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
+&lt;p&gt;The output would look like this:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 curl http://127.0.0.1:5000/service?awesome=yeah
 {&amp;quot;test&amp;quot;: &amp;quot;awesome yeah&amp;quot;}
@@ -81,8 +81,8 @@ curl http://127.0.0.1:5000/service?awesome=yeah
 &lt;p&gt;The HTTP spec defines a &lt;strong&gt;Accept&lt;/strong&gt; header the client can send so the response
 is encoded the right way. A resource, available at an URL, can be available in
 different formats. This is especially true for web services.&lt;/p&gt;
-&lt;p&gt;Cornice can help you to deal with this. The services you define can tell which
-content-types they can deal with, and this will be checked against the
+&lt;p&gt;Cornice can help you dealing with this. The services you define can tell which
+&lt;cite&gt;Content-Types&lt;/cite&gt; values they can deal with and this will be checked against the
 &lt;strong&gt;Accept&lt;/strong&gt; headers sent by the client.&lt;/p&gt;
 &lt;p&gt;Let's refine a bit our previous example, by specifying which content-types are
 supported, using the &lt;cite&gt;accept&lt;/cite&gt; parameter:&lt;/p&gt;
@@ -90,8 +90,8 @@ supported, using the &lt;cite&gt;accept&lt;/cite&gt; parameter:&lt;/p&gt;
 &lt;span class="k"&gt;def&lt;/span&gt; &lt;span class="nf"&gt;get1&lt;/span&gt;&lt;span class="p"&gt;(&lt;/span&gt;&lt;span class="n"&gt;request&lt;/span&gt;&lt;span class="p"&gt;):&lt;/span&gt;
     &lt;span class="k"&gt;return&lt;/span&gt; &lt;span class="p"&gt;{&lt;/span&gt;&lt;span class="s"&gt;&amp;quot;test&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;:&lt;/span&gt; &lt;span class="s"&gt;&amp;quot;yay!&amp;quot;&lt;/span&gt;&lt;span class="p"&gt;}&lt;/span&gt;
 &lt;/pre&gt;&lt;/div&gt;
-&lt;p&gt;Now, if you specifically ask for XML, for instance, cornice will throw a 406
-with the list of accepted content-types:&lt;/p&gt;
+&lt;p&gt;Now, if you specifically ask for XML, Cornice will throw a 406 with the list of
+accepted &lt;cite&gt;Content-Type&lt;/cite&gt; values:&lt;/p&gt;
 &lt;pre class="literal-block"&gt;
 $ curl -vH &amp;quot;Accept: application/xml&amp;quot; http://127.0.0.1:5000/service
 &amp;gt; GET /service HTTP/1.1
@@ -108,6 +108,12 @@ $ curl -vH &amp;quot;Accept: application/xml&amp;quot; http://127.0.0.1:5000/ser
 &lt;div class="section" id="building-your-documentation-automatically"&gt;
 &lt;h2&gt;Building your documentation automatically&lt;/h2&gt;
 &lt;p&gt;XXX&lt;/p&gt;
+&lt;/div&gt;
+&lt;div class="section" id="yay-how-can-i-get-it"&gt;
+&lt;h2&gt;Yay, how can I get it?&lt;/h2&gt;
+&lt;/div&gt;
+&lt;div class="section" id="what-s-next"&gt;
+&lt;h2&gt;What's next&lt;/h2&gt;
 &lt;/div&gt;
 </summary></entry><entry><title>Quels usages pour l'informatique ?</title><link href="http://blog.notmyidea.org/quels-usages-pour-linformatique-fr.html" rel="alternate"></link><updated>2011-12-01T00:00:00+01:00</updated><author><name>Alexis Métaireau</name></author><id>tag:blog.notmyidea.org,2011-12-01:/quels-usages-pour-linformatique-fr.html/</id><summary type="html">&lt;p&gt;Quand on termine ses études, on s'en pose un tas, des questions. Sur le métier
 que l'on veut faire, sur ce que ça signifie, sur le sens et la valeur du
