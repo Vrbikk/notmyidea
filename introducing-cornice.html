@@ -15,7 +15,7 @@
     <h1>Introducing Cornice</h1>
     <p class="date">Published on Wed 07 December 2011</p>
     <p>Wow, already my third working day at Mozilla. Since Monday, I've been working with
-<a class="reference external" href="http://ziade.org">Tarek Ziadé</a>, on a pyramid REST-ish toolkit named <a class="reference external" href="https://github.com/mozilla-services/Cornice">Cornice</a>.</p>
+<a class="reference external" href="http://ziade.org">Tarek Ziadé</a>, on a pyramid REST-ish toolkit named <a class="reference external" href="https://github.com/mozilla-services/cornice">Cornice</a>.</p>
 <p>Its goal is to take care for you of what you're usually missing so you can
 focus on what's important. Cornice provides you facilities
 for validation of any kind.</p>
@@ -97,7 +97,7 @@ curl http://127.0.0.1:5000/service?awesome=yeah
 is encoded the right way. A resource, available at an URL, can be available in
 different formats. This is especially true for web services.</p>
 <p>Cornice can help you dealing with this. The services you define can tell which
-<cite>Content-Types</cite> values they can deal with and this will be checked against the
+<cite>Content-Type</cite> values they can deal with and this will be checked against the
 <strong>Accept</strong> headers sent by the client.</p>
 <p>Let's refine a bit our previous example, by specifying which content-types are
 supported, using the <cite>accept</cite> parameter:</p>
@@ -133,7 +133,7 @@ your API in your docs.</p>
 </div>
 <div class="section" id="yay-how-can-i-get-it">
 <h2>Yay! How can I get it?</h2>
-<p>We just cut a 0.4 release, so it's available at <a class="reference external" href="http://pypi.python.org/pypi/Cornice">http://pypi.python.org/pypi/Cornice</a>
+<p>We just cut a 0.4 release, so it's available at <a class="reference external" href="http://pypi.python.org/pypi/cornice">http://pypi.python.org/pypi/cornice</a>
 You can install it easily using <cite>pip</cite>, for instance:</p>
 <pre class="literal-block">
 $ pip install cornice
